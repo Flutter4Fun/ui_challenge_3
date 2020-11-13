@@ -13,7 +13,7 @@ class AttributeWidget extends StatelessWidget {
   const AttributeWidget({
     Key key,
     @required this.progress,
-    this.size = 82,
+    this.size = 42,
     this.child,
   }) : super(key: key);
 
@@ -42,8 +42,8 @@ class AttributePainter extends CustomPainter {
 
   AttributePainter({
     this.progressPercent,
-    this.strokeWidth = 4.0,
-    this.filledStrokeWidth = 8.0,
+    this.strokeWidth = 2.0,
+    this.filledStrokeWidth = 4.0,
   })  : bgPaint = Paint()..color = Colors.white.withOpacity(0.25),
         strokeBgPaint = Paint()..color = Color(0xffD264C9),
         strokeFilledPaint = Paint()

@@ -68,7 +68,7 @@ class HeroRowWidget extends StatelessWidget {
                 offset: Offset(-30, 0),
                 child: Container(
                   child: Image.network(
-                    'https://flutter4fun.com/wp-content/uploads/2020/11/Player-1.png',
+                    hero.image,
                     width: rowHeight,
                     height: rowHeight,
                   ),

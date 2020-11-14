@@ -240,7 +240,7 @@ class _HeroDetailsImage extends StatelessWidget {
                     child: Center(
                       child: Hero(
                         tag: hero.name,
-                        child: Image.network(hero.image),
+                        child: Image.asset(hero.image),
                       ),
                     ),
                   ),

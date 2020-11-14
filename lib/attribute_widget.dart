@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-final String heart = 'https://flutter4fun.com/wp-content/uploads/2020/11/heart-alt.png';
-final String knife = 'https://flutter4fun.com/wp-content/uploads/2020/11/knife.png';
-final String speed = 'https://flutter4fun.com/wp-content/uploads/2020/11/speed.png';
+final String heart = 'assets/images/heart-alt.png';
+final String knife = 'assets/images/knife.png';
+final String speed = 'assets/images/speed.png';
 
 class AttributeWidget extends StatelessWidget {
   final double size;

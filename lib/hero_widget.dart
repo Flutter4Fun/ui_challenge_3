@@ -70,7 +70,7 @@ class HeroRowWidget extends StatelessWidget {
                 child: Container(
                   child: Hero(
                     tag: hero.name,
-                    child: Image.network(
+                    child: Image.asset(
                       hero.image,
                       width: rowHeight,
                       height: rowHeight,
@@ -90,15 +90,15 @@ class HeroRowWidget extends StatelessWidget {
                 children: [
                   AttributeWidget(
                     progress: hero.speed,
-                    child: Image.network(speed),
+                    child: Image.asset(speed),
                   ),
                   AttributeWidget(
                     progress: hero.health,
-                    child: Image.network(heart),
+                    child: Image.asset(heart),
                   ),
                   AttributeWidget(
                     progress: hero.attack,
-                    child: Image.network(knife),
+                    child: Image.asset(knife),
                   ),
                   SizedBox(
                     height: 32,

@@ -11,7 +11,6 @@ class HeroDetailsPage extends StatefulWidget {
 }
 
 class _HeroDetailsPageState extends State<HeroDetailsPage> {
-
   final appBarHeight = 80.0;
 
   ScrollController _scrollController;
@@ -45,7 +44,7 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
               controller: _scrollController,
               padding: EdgeInsets.only(top: appBarHeight),
               children: [
-                _HeroDetailsImage(widget.hero.image),
+                _HeroDetailsImage(widget.hero),
                 _HeroDetailsName(widget.hero.name),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 12),
@@ -56,7 +55,9 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 28,),
+                SizedBox(
+                  height: 28,
+                ),
                 Row(
                   children: [
                     SizedBox(
@@ -98,14 +99,10 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
                           padding: const EdgeInsets.all(0.0),
                           child: Ink(
                             decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFFF29758),
-                                  Color(0xFFEF5D67),
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter
-                              ),
+                              gradient: LinearGradient(colors: [
+                                Color(0xFFF29758),
+                                Color(0xFFEF5D67),
+                              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                               borderRadius: BorderRadius.all(Radius.circular(80.0)),
                             ),
                             child: Container(
@@ -126,7 +123,9 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 28,),
+                SizedBox(
+                  height: 28,
+                ),
               ],
             ),
             SafeArea(
@@ -158,8 +157,8 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
                     ),
                     Expanded(
                         child: Container(
-                          height: appBarHeight,
-                        )),
+                      height: appBarHeight,
+                    )),
                     Container(
                       width: appBarHeight,
                       height: appBarHeight,
@@ -190,9 +189,9 @@ class _HeroDetailsPageState extends State<HeroDetailsPage> {
 }
 
 class _HeroDetailsImage extends StatelessWidget {
-  final String url;
+  final HeroModel hero;
 
-  const _HeroDetailsImage(this.url);
+  const _HeroDetailsImage(this.hero);
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +238,10 @@ class _HeroDetailsImage extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.all(8),
                     child: Center(
-                      child: Image.network(url),
+                      child: Hero(
+                        tag: hero.name,
+                        child: Image.network(hero.image),
+                      ),
                     ),
                   ),
                 ),

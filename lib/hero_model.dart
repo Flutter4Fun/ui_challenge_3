@@ -16,14 +16,14 @@ class HeroModel {
 
 final List<HeroModel> heroes = [
   HeroModel(
-    name: 'Bombardier',
+    name: 'Bar Bar Green',
     image: 'https://flutter4fun.com/wp-content/uploads/2020/11/Player-1.png',
     speed: 16.0,
     health: 40.0,
     attack: 65.0,
   ),
   HeroModel(
-    name: 'Bombardier',
+    name: 'Cow Master',
     image: 'https://flutter4fun.com/wp-content/uploads/2020/11/Player-2.png',
     speed: 25.0,
     health: 50.0,

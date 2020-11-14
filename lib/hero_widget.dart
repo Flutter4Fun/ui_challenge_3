@@ -68,10 +68,13 @@ class HeroRowWidget extends StatelessWidget {
               Transform.translate(
                 offset: Offset(-30, 0),
                 child: Container(
-                  child: Image.network(
-                    hero.image,
-                    width: rowHeight,
-                    height: rowHeight,
+                  child: Hero(
+                    tag: hero.name,
+                    child: Image.network(
+                      hero.image,
+                      width: rowHeight,
+                      height: rowHeight,
+                    ),
                   ),
                 ),
               ),

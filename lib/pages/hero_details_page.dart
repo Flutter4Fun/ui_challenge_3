@@ -1,68 +1,177 @@
 import 'package:flutter/material.dart';
 import 'package:ui_challenge_3/hero_model.dart';
 
-class HeroDetailsPage extends StatelessWidget {
+class HeroDetailsPage extends StatefulWidget {
   final HeroModel hero;
 
   const HeroDetailsPage(this.hero);
 
   @override
-  Widget build(BuildContext context) {
-    final appBarHeight = 80.0;
+  _HeroDetailsPageState createState() => _HeroDetailsPageState();
+}
 
+class _HeroDetailsPageState extends State<HeroDetailsPage> {
+
+  final appBarHeight = 80.0;
+
+  ScrollController _scrollController;
+
+  double toolbarOpacity = 1.0;
+
+  @override
+  void initState() {
+    _scrollController = new ScrollController();
+    _scrollController.addListener(() {
+      setState(() {
+        if (_scrollController.offset <= appBarHeight) {
+          toolbarOpacity = (appBarHeight - _scrollController.offset) / appBarHeight;
+        } else {
+          toolbarOpacity = 0;
+        }
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
         child: Stack(
           children: [
-            SafeArea(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 18,
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  Text(
-                    'Overview',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    height: appBarHeight,
-                  )),
-                  Container(
-                    width: appBarHeight,
-                    height: appBarHeight,
-                    child: Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-            ),
             ListView(
+              controller: _scrollController,
               padding: EdgeInsets.only(top: appBarHeight),
               children: [
-                _HeroDetailsImage(hero.image),
-                _HeroDetailsName(hero.name),
+                _HeroDetailsImage(widget.hero.image),
+                _HeroDetailsName(widget.hero.name),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 12),
+                  child: Text(
+                    "Super smash bros ultimate villagers from the animal crossing series. This troops fight most effectively in large group",
+                    style:
+                        TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w300),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 28,),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 28,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 54,
+                        child: OutlineButton(
+                          child: new Text(
+                            'Add Favourite',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                            ),
+                          ),
+                          onPressed: () {},
+                          color: Colors.white,
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1,
+                          ),
+                          highlightedBorderColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 14,
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 56,
+                        child: RaisedButton(
+                          onPressed: () {},
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80.0)),
+                          padding: const EdgeInsets.all(0.0),
+                          child: Ink(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFFF29758),
+                                  Color(0xFFEF5D67),
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(80.0)),
+                            ),
+                            child: Container(
+                              constraints: const BoxConstraints(minWidth: 88.0, minHeight: 36.0),
+                              // min sizes for Material buttons
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'OK',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 28,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 28,),
               ],
-            )
+            ),
+            SafeArea(
+              child: Opacity(
+                opacity: toolbarOpacity,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 18,
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    Text(
+                      'Overview',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Expanded(
+                        child: Container(
+                          height: appBarHeight,
+                        )),
+                    Container(
+                      width: appBarHeight,
+                      height: appBarHeight,
+                      child: Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         decoration: BoxDecoration(

@@ -8,7 +8,6 @@ class HeroDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final appBarHeight = 80.0;
 
     return Scaffold(
@@ -57,10 +56,13 @@ class HeroDetailsPage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
+            ListView(
               padding: EdgeInsets.only(top: appBarHeight),
-              child: _HeroDetailsImage(hero.image),
-            ),
+              children: [
+                _HeroDetailsImage(hero.image),
+                _HeroDetailsName(hero.name),
+              ],
+            )
           ],
         ),
         decoration: BoxDecoration(
@@ -85,8 +87,8 @@ class _HeroDetailsImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Padding(
-      padding: const EdgeInsets.all(28.0),
+    return Padding(
+      padding: const EdgeInsets.only(top: 28.0, left: 28.0, right: 28.0),
       child: AspectRatio(
         aspectRatio: 1,
         child: Container(
@@ -125,12 +127,62 @@ class _HeroDetailsImage extends StatelessWidget {
                     color: Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.all(Radius.circular(28)),
                   ),
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Center(
+                      child: Image.network(url),
+                    ),
+                  ),
                 ),
                 alignment: Alignment.bottomCenter,
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _HeroDetailsName extends StatelessWidget {
+  final String heroName;
+
+  const _HeroDetailsName(this.heroName);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 8),
+      height: 86,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text(
+              heroName,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 42,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 18.0),
+              child: Text(
+                heroName,
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 56,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_challenge_3/attribute_widget.dart';
+import 'package:ui_challenge_3/pages/hero_details_page.dart';
 import 'dart:math' as math;
 
 import 'hero_model.dart';
@@ -106,7 +107,11 @@ class HeroRowWidget extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+                          return HeroDetailsPage(hero);
+                        }));
+                      },
                       color: Colors.white,
                       borderSide: BorderSide(
                         color: Colors.white,

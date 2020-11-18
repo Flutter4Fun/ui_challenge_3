@@ -1,14 +1,15 @@
+library ui_challenge_3;
 import 'package:flutter/material.dart';
 
-import '../hero_model.dart';
-import '../hero_widget.dart';
+import 'hero_model.dart';
+import 'hero_widget.dart';
 
-class HeroListPage extends StatefulWidget {
+class UiChallenge3 extends StatefulWidget {
   @override
-  _HeroListPageState createState() => _HeroListPageState();
+  _UiChallenge3State createState() => _UiChallenge3State();
 }
 
-class _HeroListPageState extends State<HeroListPage> {
+class _UiChallenge3State extends State<UiChallenge3> {
   ScrollController _scrollController;
 
   double toolbarOpacity = 1.0;
